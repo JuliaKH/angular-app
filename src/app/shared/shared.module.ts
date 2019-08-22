@@ -14,7 +14,9 @@ import {FormsModule} from '@angular/forms';
     ImgListComponent
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    ImgListComponent
+
   ],
   imports: [
     CommonModule,
