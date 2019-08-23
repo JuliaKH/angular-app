@@ -1,4 +1,4 @@
-<form action="" class="search-form" (ngSubmit)="getImages()">
+<form action="" class="search-form" (ngSubmit)="getImages(queryTitle, 1)">
   <input type="text" class="search-form__input"
          name="title"
          [(ngModel)]="queryTitle"

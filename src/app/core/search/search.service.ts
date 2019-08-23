@@ -13,8 +13,8 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   public currentImages = new Subject<any>();
-
-  getUnsplashImages(title: string): Observable<Images[]> {
+  public queryTitle;
+  getUnsplashImages(title: string, page): Observable<Images[]> {
     let headers = new HttpHeaders();
     headers  = headers.append('Authorization', 'Client-ID 5110e0875d03049c42ef2483cf9a9ad53c6a0f46dd526e9ee18dca0c3c6a8f0b');
 
@@ -22,7 +22,7 @@ export class SearchService {
     params = params.append('query', title);
     params = params.append('per_page', '30');
 
-    return this.http.get(`https://api.unsplash.com/search/photos`, {headers, params})
+    return this.http.get(`https://api.unsplash.com/search/photos?page=${page}`, {headers, params})
       .pipe(
         map((data: Idata) => {
           const images = data.results;
@@ -37,7 +37,11 @@ export class SearchService {
         })
       );
   }
-
+  getImages(title, page) {
+    this.getUnsplashImages(title, page).subscribe((data) => {
+      // this.images = data;
+    });
+  }
 }
 
 interface Idata {

@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SearchService} from '../../core/search/search.service';
-import {Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { SearchService } from '../../core/search/search.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-img-list',
@@ -15,6 +15,7 @@ export class ImgListComponent implements OnInit, OnDestroy {
 images: ReceiveImages[] = [];
 private subscription: Subscription;
 
+  page = 1;
   ngOnInit() {
     this.getImages();
   }
@@ -24,8 +25,16 @@ private subscription: Subscription;
   getImages() {
     this.subscription = this.searchService.currentImages.subscribe(images => {
       this.images = images;
+      // this.images.push(images);
       console.log(this.images);
+      console.log(this.searchService.queryTitle);
     });
+  }
+  // When scroll down the screen
+  onScroll() {
+    console.log('Scrolled');
+    this.page += this.page;
+    this.searchService.getImages(this.searchService.queryTitle, this.page);
   }
 }
 

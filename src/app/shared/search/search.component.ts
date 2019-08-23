@@ -15,15 +15,15 @@ export class SearchComponent implements OnInit {
   queryTitle: string;
   searchPlaceholder = 'Search...';
   ngOnInit() {
-    this.searchService.getUnsplashImages('popular').subscribe((data) => {
-      this.images = data;
-    });
+    this.getImages('popular', 1);
   }
 
-  getImages() {
-    this.searchService.getUnsplashImages(this.queryTitle).subscribe((data) => {
-      console.log(data);
-      this.images = data;
-    });
+  getImages(title, page) {
+    this.searchService.getImages(title, page);
+    this.searchService.queryTitle = title;
+    // this.searchService.getUnsplashImages(this.queryTitle, 1).subscribe((data) => {
+    //   console.log(data);
+    //   this.images = data;
+    // });
   }
 }
