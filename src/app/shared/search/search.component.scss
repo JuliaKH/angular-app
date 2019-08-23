@@ -1,12 +1,13 @@
 $search-color: #333;
 
 .search-form{
-  max-height: 45px;
+  max-height: 50px;
+  width: 100%;
   display: flex;
-  width: 400px;
+  margin: 0 auto;
 
   &__input{
-    max-width: 400px;
+    //max-width: 400px;
     height: 45px;
     width: 100%;
     border: none;
@@ -14,14 +15,19 @@ $search-color: #333;
     padding: 0 10px;
     color: white;
     font-size: 16px;
+    border-radius: 5px 0 0 5px;
   }
   &__button{
     border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: $search-color;
+    cursor: pointer;
   }
   &__img{
     max-width: 20px;
     height: 100%;
     background-color: $search-color;
-    padding: 0 5px;
+    margin: 0 10px;
+    //border-radius: 0 5px 5px 0;
   }
 }

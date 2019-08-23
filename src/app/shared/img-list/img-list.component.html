@@ -1,1 +1,7 @@
-<p>img-list works!</p>
+<section class="img-list">
+  <div class="container">
+    <div *ngFor="let image of images">
+      <img [src]="image.urls.regular" [alt]="image.description" class="img-list__image">
+    </div>
+  </div>
+</section>

@@ -1,5 +1,9 @@
-<form action="" class="search-form" (submit)="getImages()">
-  <input type="text" class="search-form__input" (change)="setValue($event.target.value)">
+<form action="" class="search-form" (ngSubmit)="getImages()">
+  <input type="text" class="search-form__input"
+         name="title"
+         [(ngModel)]="queryTitle"
+         [placeholder]="searchPlaceholder"
+  >
   <button type="submit" class="search-form__button">
     <img src="assets/img/search.svg" alt="search" class="search-form__img">
   </button>

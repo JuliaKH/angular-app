@@ -1,0 +1,25 @@
+.container{
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.img-list{
+  column-count: 4; // сколько колонок нужно?
+  column-gap: 1em; // промежуток между блоками (справа или слева)
+
+  /* тоже самое с нужными префиксами на 18 марта 2016 */
+  -webkit-column-count: 4; -moz-column-count: 4;
+  -webkit-column-gap: 1em; -moz-column-gap: 1em;
+
+  margin-top: 30px;
+  &__image{
+    max-width: 350px;
+    border-radius: 20px;
+
+    display: inline-block; // важно!
+    width: 100%;           // важно!
+    margin-bottom: 1em;
+    background-color: #eee;
+  }
+}

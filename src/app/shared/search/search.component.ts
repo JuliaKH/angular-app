@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../core/search/search.service';
-import {Images} from '../images';
+import { Images } from '../images';
 
 @Component({
   selector: 'app-search',
@@ -11,18 +11,17 @@ export class SearchComponent implements OnInit {
 
   constructor(public searchService: SearchService) { }
 
-  inputValue = '';
   images: Images[] = [];
+  queryTitle: string;
+  searchPlaceholder = 'Search...';
   ngOnInit() {
-  }
-
-  setValue(value) {
-    this.inputValue = value;
-    console.log(this.inputValue);
+    this.searchService.getUnsplashImages('popular').subscribe((data) => {
+      this.images = data;
+    });
   }
 
   getImages() {
-    this.searchService.getUnsplashImages(this.inputValue).subscribe((data) => {
+    this.searchService.getUnsplashImages(this.queryTitle).subscribe((data) => {
       console.log(data);
       this.images = data;
     });
