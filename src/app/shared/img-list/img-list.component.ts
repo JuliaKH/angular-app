@@ -12,6 +12,7 @@ export class ImgListComponent implements OnInit, OnDestroy {
 
   constructor(public searchService: SearchService) {}
 
+  // @ts-ignore
   images: ReceiveImages[] = [];
   private subscription: Subscription;
 
@@ -24,11 +25,14 @@ export class ImgListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
     window.removeEventListener('scroll', this.scroll, true);
   }
+  pushImage<T>(image: T) {
+    this.images.push(image);
+  }
   getImages() {
     this.subscription = this.searchService.currentImages.subscribe(images => {
       // this.images = images;
       images.map(image => {
-        this.images.push(image);
+        this.pushImage(image);
       });
       console.log(this.images);
     });
@@ -44,7 +48,7 @@ export class ImgListComponent implements OnInit, OnDestroy {
 
 }
 
-export class ReceiveImages {
+export class ReceiveImages<T> {
   id: string;
   description: string;
   urls: {
