@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import { SearchService } from '../../core/search/search.service';
 import { Subscription } from 'rxjs';
 
@@ -10,32 +10,38 @@ import { Subscription } from 'rxjs';
 
 export class ImgListComponent implements OnInit, OnDestroy {
 
-  constructor(public searchService: SearchService) { }
+  constructor(public searchService: SearchService) {}
 
-images: ReceiveImages[] = [];
-private subscription: Subscription;
+  images: ReceiveImages[] = [];
+  private subscription: Subscription;
 
   page = 1;
   ngOnInit() {
     this.getImages();
+    window.addEventListener('scroll', this.scroll, true);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    window.removeEventListener('scroll', this.scroll, true);
   }
   getImages() {
     this.subscription = this.searchService.currentImages.subscribe(images => {
-      this.images = images;
-      // this.images.push(images);
+      // this.images = images;
+      images.map(image => {
+        this.images.push(image);
+      });
       console.log(this.images);
-      console.log(this.searchService.queryTitle);
     });
   }
-  // When scroll down the screen
-  onScroll() {
-    console.log('Scrolled');
-    this.page += this.page;
-    this.searchService.getImages(this.searchService.queryTitle, this.page);
+  @HostListener('window:scroll', ['$event'])
+  scroll = (): void => {
+    if ((window.innerHeight + window.scrollY) + 1 >= document.body.offsetHeight) {
+      this.page++;
+      console.log(this.page);
+      this.searchService.getImages(this.searchService.queryTitle, this.page);
+    }
   }
+
 }
 
 export class ReceiveImages {

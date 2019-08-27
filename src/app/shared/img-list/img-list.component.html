@@ -1,5 +1,4 @@
-<section class="img-list" (scroll)="onScroll()">
-  <button (click)="onScroll()">Click!</button>
+<section class="img-list" >
   <div class="container" >
     <div *ngFor="let image of images">
       <img [src]="image.urls.regular" [alt]="image.description" class="img-list__image">

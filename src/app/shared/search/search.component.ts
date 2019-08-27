@@ -10,8 +10,6 @@ import { Images } from '../images';
 export class SearchComponent implements OnInit {
 
   constructor(public searchService: SearchService) { }
-
-  images: Images[] = [];
   queryTitle: string;
   searchPlaceholder = 'Search...';
   ngOnInit() {
@@ -21,9 +19,5 @@ export class SearchComponent implements OnInit {
   getImages(title, page) {
     this.searchService.getImages(title, page);
     this.searchService.queryTitle = title;
-    // this.searchService.getUnsplashImages(this.queryTitle, 1).subscribe((data) => {
-    //   console.log(data);
-    //   this.images = data;
-    // });
   }
 }

@@ -20,7 +20,7 @@ export class SearchService {
 
     let params = new HttpParams();
     params = params.append('query', title);
-    params = params.append('per_page', '30');
+    params = params.append('per_page', '10');
 
     return this.http.get(`https://api.unsplash.com/search/photos?page=${page}`, {headers, params})
       .pipe(
@@ -38,9 +38,7 @@ export class SearchService {
       );
   }
   getImages(title, page) {
-    this.getUnsplashImages(title, page).subscribe((data) => {
-      // this.images = data;
-    });
+    this.getUnsplashImages(title, page).subscribe();
   }
 }
 
