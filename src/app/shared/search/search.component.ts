@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../core/search/search.service';
-import { Images } from '../images';
 
 @Component({
   selector: 'app-search',
@@ -13,11 +12,11 @@ export class SearchComponent implements OnInit {
   queryTitle: string;
   searchPlaceholder = 'Search...';
   ngOnInit() {
-    this.getImages('popular', 1);
+    this.getImages('popular');
   }
 
-  getImages(title, page) {
-    this.searchService.getImages(title, page);
+  getImages(title) {
+    this.searchService.getImages(title);
     this.searchService.queryTitle = title;
   }
 }

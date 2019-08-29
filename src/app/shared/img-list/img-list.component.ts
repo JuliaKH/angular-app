@@ -14,10 +14,13 @@ export class ImgListComponent implements OnInit, OnDestroy {
 
   images: ReceiveImages[] = [];
   private subscription: Subscription;
+  private scrollSubscription: Subscription;
 
   page = 1;
+  query: string;
   ngOnInit() {
     this.getImages();
+    this.getNewImages();
     window.addEventListener('scroll', this.scroll, true);
   }
   ngOnDestroy() {
@@ -25,20 +28,24 @@ export class ImgListComponent implements OnInit, OnDestroy {
     window.removeEventListener('scroll', this.scroll, true);
   }
   getImages() {
-    this.subscription = this.searchService.currentImages.subscribe(images => {
-      // this.images = images;
-      images.map(image => {
-        this.images.push(image);
-      });
-      console.log(this.images);
+    this.subscription = this.searchService.newImages.subscribe(images => {
+        this.images = images;
     });
   }
-  @HostListener('window:scroll', ['$event'])
+  getNewImages() {
+    this.scrollSubscription = this.searchService.currentImages.subscribe(images => {
+        images.map(image => {
+          this.images.push(image);
+        });
+
+    });
+  }
+  // @HostListener('window:scroll', ['$event'])
   scroll = (): void => {
     if ((window.innerHeight + window.scrollY) + 1 >= document.body.offsetHeight) {
       this.page++;
       console.log(this.page);
-      this.searchService.getImages(this.searchService.queryTitle, this.page);
+      this.searchService.getAddedImages(this.searchService.queryTitle, this.page);
     }
   }
 

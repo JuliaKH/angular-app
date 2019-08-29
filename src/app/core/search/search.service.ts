@@ -12,9 +12,36 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
+  public newImages = new Subject<any>();
   public currentImages = new Subject<any>();
   public queryTitle;
-  getUnsplashImages(title: string, page): Observable<Images[]> {
+  getUnsplashImages(title: string): Observable<Images[]> {
+    let headers = new HttpHeaders();
+    headers  = headers.append('Authorization', 'Client-ID 5110e0875d03049c42ef2483cf9a9ad53c6a0f46dd526e9ee18dca0c3c6a8f0b');
+
+    let params = new HttpParams();
+    params = params.append('query', title);
+    params = params.append('per_page', '10');
+
+    return this.http.get(`https://api.unsplash.com/search/photos?page=1`, {headers, params})
+      .pipe(
+        map((data: Idata) => {
+          const images = data.results;
+          this.newImages.next(images);
+          return images.map((image) => {
+            return {id: image.id, description: image.description, url: image.urls.regular};
+          });
+        }),
+        catchError(err => {
+          console.log(err);
+          return throwError(err);
+        })
+      );
+  }
+  getImages(title) {
+    this.getUnsplashImages(title).subscribe();
+  }
+  addScrollingImages(title: string, page): Observable<Images[]> {
     let headers = new HttpHeaders();
     headers  = headers.append('Authorization', 'Client-ID 5110e0875d03049c42ef2483cf9a9ad53c6a0f46dd526e9ee18dca0c3c6a8f0b');
 
@@ -37,8 +64,9 @@ export class SearchService {
         })
       );
   }
-  getImages(title, page) {
-    this.getUnsplashImages(title, page).subscribe();
+
+  getAddedImages(title, page) {
+    this.addScrollingImages(title, page).subscribe();
   }
 }
 
