@@ -13,7 +13,7 @@ export class ImgListComponent implements OnInit, OnDestroy {
   constructor(public searchService: SearchService) {}
 
   images: ReceiveImages[] = [];
-  private subscription: Subscription;
+  private addImgsSubscription: Subscription;
   private scrollSubscription: Subscription;
 
   page = 1;
@@ -24,11 +24,12 @@ export class ImgListComponent implements OnInit, OnDestroy {
     window.addEventListener('scroll', this.scroll, true);
   }
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.addImgsSubscription.unsubscribe();
+    this.scrollSubscription.unsubscribe();
     window.removeEventListener('scroll', this.scroll, true);
   }
   getImages() {
-    this.subscription = this.searchService.newImages.subscribe(images => {
+    this.addImgsSubscription = this.searchService.newImages.subscribe(images => {
         this.images = images;
     });
   }
