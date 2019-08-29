@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SearchComponent } from './search/search.component';
-import { ImgListComponent } from './img-list/img-list.component';
+import { ImgListComponent } from '../pages/img-list/img-list.component';
 import {FormsModule} from '@angular/forms';
 
 

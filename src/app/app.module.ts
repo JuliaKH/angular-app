@@ -12,6 +12,8 @@ import { NavbarComponent } from './header/navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginButtonComponent } from './header/login-button/login-button.component';
 import { SignUpButtonComponent } from './header/sign-up-button/sign-up-button.component';
+import { ImageItemComponent } from './pages/image-item/image-item.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { SignUpButtonComponent } from './header/sign-up-button/sign-up-button.co
     NavbarComponent,
     HeaderComponent,
     LoginButtonComponent,
-    SignUpButtonComponent
+    SignUpButtonComponent,
+    ImageItemComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
