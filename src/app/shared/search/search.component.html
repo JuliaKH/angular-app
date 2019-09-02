@@ -1,10 +1,10 @@
-<form action="" class="search-form" (ngSubmit)="getImages(queryTitle, 1)">
+<form action="" class="search-form" (ngSubmit)="getImages(queryTitle)">
   <input type="text" class="search-form__input"
          name="title"
          [(ngModel)]="queryTitle"
          [placeholder]="searchPlaceholder"
   >
-  <button type="submit" class="search-form__button">
-    <img src="assets/img/search.svg" alt="search" class="search-form__img">
-  </button>
+    <button routerLink="/images" type="submit" class="search-form__button">
+      <img src="assets/img/search.svg" alt="search" class="search-form__img">
+    </button>
 </form>

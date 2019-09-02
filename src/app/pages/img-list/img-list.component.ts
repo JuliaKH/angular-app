@@ -17,8 +17,8 @@ export class ImgListComponent implements OnInit, OnDestroy {
   private scrollSubscription: Subscription;
 
   page = 1;
-  query: string;
   ngOnInit() {
+    this.searchService.getImages(this.searchService.queryTitle);
     this.getImages();
     this.getNewImages();
     window.addEventListener('scroll', this.scroll, true);

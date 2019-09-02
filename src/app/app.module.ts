@@ -14,6 +14,7 @@ import { LoginButtonComponent } from './header/login-button/login-button.compone
 import { SignUpButtonComponent } from './header/sign-up-button/sign-up-button.component';
 import { ImageItemComponent } from './pages/image-item/image-item.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     LoginButtonComponent,
     SignUpButtonComponent,
     ImageItemComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

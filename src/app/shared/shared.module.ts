@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search/search.component';
 import { ImgListComponent } from '../pages/img-list/img-list.component';
 import {FormsModule} from '@angular/forms';
+import {AppRoutingModule} from '../app-routing.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {FormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    AppRoutingModule,
   ]
 })
 export class SharedModule { }

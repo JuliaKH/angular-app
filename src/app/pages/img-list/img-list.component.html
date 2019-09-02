@@ -1,8 +1,8 @@
 <section class="img-list" >
   <div class="container" >
-    <a href="#" *ngFor="let image of images">
+    <a *ngFor="let image of images">
       <div class="img-list__item">
-        <img [src]="image.urls.regular" [alt]="image.description" class="img-list__image">
+        <img routerLink="/images/{{image.id}}" [src]="image.urls.regular" [alt]="image.description" class="img-list__image">
       </div>
     </a>
   </div>
