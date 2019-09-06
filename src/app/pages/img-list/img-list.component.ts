@@ -1,6 +1,7 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { SearchService } from '../../core/search/search.service';
 import { Subscription } from 'rxjs';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-img-list',
@@ -9,8 +10,8 @@ import { Subscription } from 'rxjs';
 })
 
 export class ImgListComponent implements OnInit, OnDestroy {
-
-  constructor(public searchService: SearchService) {}
+  constructor(public searchService: SearchService) {
+  }
 
   images: ReceiveImages[] = [];
   private addImgsSubscription: Subscription;
@@ -18,10 +19,10 @@ export class ImgListComponent implements OnInit, OnDestroy {
 
   page = 1;
   ngOnInit() {
-    this.searchService.getImages(this.searchService.queryTitle);
+    // this.searchService.getImages(this.searchService.queryTitle);
     this.getImages();
-    this.getNewImages();
-    window.addEventListener('scroll', this.scroll, true);
+    // this.getNewImages();
+    // window.addEventListener('scroll', this.scroll, true);
   }
   ngOnDestroy() {
     this.addImgsSubscription.unsubscribe();
@@ -31,6 +32,7 @@ export class ImgListComponent implements OnInit, OnDestroy {
   getImages() {
     this.addImgsSubscription = this.searchService.newImages.subscribe(images => {
         this.images = images;
+        console.log(this.images);
     });
   }
   getNewImages() {

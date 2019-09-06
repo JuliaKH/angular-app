@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
 import { SharedModule } from './shared/shared.module';
@@ -12,9 +12,8 @@ import { NavbarComponent } from './header/navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginButtonComponent } from './header/login-button/login-button.component';
 import { SignUpButtonComponent } from './header/sign-up-button/sign-up-button.component';
-import { ImageItemComponent } from './pages/image-item/image-item.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { HomeComponent } from './pages/home/home.component';
+import { PagesModule } from './pages/pages.module';
+
 
 @NgModule({
   declarations: [
@@ -23,9 +22,6 @@ import { HomeComponent } from './pages/home/home.component';
     HeaderComponent,
     LoginButtonComponent,
     SignUpButtonComponent,
-    ImageItemComponent,
-    NotFoundComponent,
-    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +29,9 @@ import { HomeComponent } from './pages/home/home.component';
     HttpClientModule,
     AppRoutingModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    PagesModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   exports: [

@@ -27,6 +27,7 @@ export class SearchService {
       .pipe(
         map((data: Idata) => {
           const images = data.results;
+          console.log(images);
           this.newImages.next(images);
           return images.map((image) => {
             return {id: image.id, description: image.description, url: image.urls.regular};
@@ -53,6 +54,7 @@ export class SearchService {
       .pipe(
         map((data: Idata) => {
           const images = data.results;
+          console.log(images);
           this.currentImages.next(images);
           return images.map((image) => {
             return {id: image.id, description: image.description, url: image.urls.regular};

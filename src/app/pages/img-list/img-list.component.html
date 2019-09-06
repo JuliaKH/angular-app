@@ -1,9 +1,13 @@
-<section class="img-list" >
-  <div class="container" >
-    <a *ngFor="let image of images">
-      <div class="img-list__item">
-        <img routerLink="/images/{{image.id}}" [src]="image.urls.regular" [alt]="image.description" class="img-list__image">
-      </div>
-    </a>
-  </div>
-</section>
+<!--<section class="img-list" >-->
+<!--  <div class="container">-->
+    <cdk-virtual-scroll-viewport itemSize="10" >
+      <a *cdkVirtualFor="let image of images">
+        <div class="img-list__item">
+          <img routerLink="/images/{{image.id}}" [src]="image.urls.regular" [alt]="image.description" class="img-list__image">
+        </div>
+      </a>
+    </cdk-virtual-scroll-viewport>
+<!--  </div>-->
+
+
+<!--</section>-->
