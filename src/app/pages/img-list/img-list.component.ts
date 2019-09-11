@@ -1,7 +1,6 @@
-import {Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { SearchService } from '../../core/search/search.service';
 import { Subscription } from 'rxjs';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-img-list',
@@ -19,15 +18,14 @@ export class ImgListComponent implements OnInit, OnDestroy {
 
   page = 1;
   ngOnInit() {
-    // this.searchService.getImages(this.searchService.queryTitle);
+    this.searchService.getImages(this.searchService.queryTitle);
     this.getImages();
+    this.appendItems();
     // this.getNewImages();
-    // window.addEventListener('scroll', this.scroll, true);
   }
   ngOnDestroy() {
     this.addImgsSubscription.unsubscribe();
     this.scrollSubscription.unsubscribe();
-    window.removeEventListener('scroll', this.scroll, true);
   }
   getImages() {
     this.addImgsSubscription = this.searchService.newImages.subscribe(images => {
@@ -35,21 +33,21 @@ export class ImgListComponent implements OnInit, OnDestroy {
         console.log(this.images);
     });
   }
-  getNewImages() {
-    this.scrollSubscription = this.searchService.currentImages.subscribe(images => {
-        images.map(image => {
-          this.images.push(image);
-        });
 
+  appendItems() {
+    this.page++;
+    console.log(this.page);
+
+    this.scrollSubscription = this.searchService.currentImages.subscribe(images => {
+      images.map(image => {
+        this.images.push(image);
+      });
     });
   }
-  // @HostListener('window:scroll', ['$event'])
-  scroll = (): void => {
-    if ((window.innerHeight + window.scrollY) + 1 >= document.body.offsetHeight) {
-      this.page++;
-      console.log(this.page);
-      this.searchService.getAddedImages(this.searchService.queryTitle, this.page);
-    }
+  onScrollDown() {
+    this.page++;
+    console.log(this.page);
+    this.searchService.getAddedImages(this.searchService.queryTitle, this.page);
   }
 
 }

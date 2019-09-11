@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginButtonComponent } from './header/login-button/login-button.component';
 import { SignUpButtonComponent } from './header/sign-up-button/sign-up-button.component';
 import { PagesModule } from './pages/pages.module';
+import {ImgListModule} from './pages/img-list/img-list.module';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { PagesModule } from './pages/pages.module';
     SharedModule,
     CoreModule,
     PagesModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    // ImgListModule
   ],
   providers: [],
   exports: [
