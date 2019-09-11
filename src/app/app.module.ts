@@ -6,6 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { NavbarComponent } from './header/navbar/navbar.component';
@@ -15,6 +20,7 @@ import { SignUpButtonComponent } from './header/sign-up-button/sign-up-button.co
 import { PagesModule } from './pages/pages.module';
 import {ImgListModule} from './pages/img-list/img-list.module';
 
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,10 @@ import {ImgListModule} from './pages/img-list/img-list.module';
     CoreModule,
     PagesModule,
     BrowserAnimationsModule,
-    // ImgListModule
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   exports: [
