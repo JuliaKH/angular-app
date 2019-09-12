@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../core/auth/auth.service';
 
 @Component({
@@ -6,16 +6,12 @@ import {AuthService} from '../../core/auth/auth.service';
   templateUrl: './login-button.component.html',
   styleUrls: ['./login-button.component.scss']
 })
+
 export class LoginButtonComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
   }
-  onLogin() {
-    console.log('123');
-    this.auth.addUser().subscribe((res) => {
-      // console.log(res);
-    });
-  }
+
 }

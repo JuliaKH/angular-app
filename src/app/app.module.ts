@@ -21,6 +21,7 @@ import { PagesModule } from './pages/pages.module';
 import {ImgListModule} from './pages/img-list/img-list.module';
 
 import { environment } from '../environments/environment';
+import { LogoutButtonComponent } from './header/logout-button/logout-button.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { environment } from '../environments/environment';
     HeaderComponent,
     LoginButtonComponent,
     SignUpButtonComponent,
+    LogoutButtonComponent,
   ],
   imports: [
     BrowserModule,

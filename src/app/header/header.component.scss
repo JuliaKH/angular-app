@@ -22,4 +22,11 @@ $header-color: #06050c;
   &__buttons{
     display: flex;
   }
+  &__login{
+    display: flex;
+  }
+  .greeting-text{
+    color: white;
+
+  }
 }
