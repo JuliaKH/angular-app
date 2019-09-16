@@ -6,6 +6,7 @@ import { Store, select} from '@ngrx/store';
 import {IAppState} from '../../core/store/state/app.state';
 import {Router} from '@angular/router';
 import {selectImagesLst} from '../../core/store/selectors/images.selector';
+import {IImages} from '../../core/search/images';
 
 @Component({
   selector: 'app-img-list',
@@ -19,21 +20,31 @@ export class ImgListComponent implements OnInit, OnDestroy {
   }
 
   images: ReceiveImages[] = [];
+  images1: IImages[] = [];
   private addImgsSubscription: Subscription;
   private scrollSubscription: Subscription;
 
   page = 1;
   ngOnInit() {
-    this.searchService.getImages(this.searchService.queryTitle);
-    this.getImages();
-    this.appendItems();
+    // this.searchService.getImages(this.searchService.queryTitle);
+    // this.getImages();
+    // this.appendItems();
     this.store.dispatch(new GetImages());
     console.log(this.images$);
+    this.getImages$();
     // this.getNewImages();
   }
   ngOnDestroy() {
     this.addImgsSubscription.unsubscribe();
     this.scrollSubscription.unsubscribe();
+  }
+  getImages$() {
+    this.images$.subscribe(images => {
+      this.images1 = images;
+      console.log('hello!!!');
+      console.log(this.images1);
+    });
+
   }
   getImages() {
     this.addImgsSubscription = this.searchService.newImages.subscribe(images => {
