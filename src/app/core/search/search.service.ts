@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, Subject, throwError } from 'rxjs';
-import { Images } from '../../shared/images';
+import { IImages } from './images';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class SearchService {
   public newImages = new Subject<any>();
   public currentImages = new Subject<any>();
   public queryTitle;
-  getUnsplashImages(title: string): Observable<Images[]> {
+  getUnsplashImages(title: string): Observable<IImages[]> {
     let headers = new HttpHeaders();
     headers  = headers.append('Authorization', 'Client-ID 5110e0875d03049c42ef2483cf9a9ad53c6a0f46dd526e9ee18dca0c3c6a8f0b');
 
@@ -42,7 +42,7 @@ export class SearchService {
   getImages(title) {
     this.getUnsplashImages(title).subscribe();
   }
-  addScrollingImages(title: string, page): Observable<Images[]> {
+  addScrollingImages(title: string, page): Observable<IImages[]> {
     let headers = new HttpHeaders();
     headers  = headers.append('Authorization', 'Client-ID 5110e0875d03049c42ef2483cf9a9ad53c6a0f46dd526e9ee18dca0c3c6a8f0b');
 

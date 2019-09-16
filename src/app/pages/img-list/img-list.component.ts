@@ -1,6 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { SearchService } from '../../core/search/search.service';
 import { Subscription } from 'rxjs';
+import { GetImages } from '../../core/store/actions/images.actions';
+import { Store, select} from '@ngrx/store';
+import {IAppState} from '../../core/store/state/app.state';
+import {Router} from '@angular/router';
+import {selectImagesLst} from '../../core/store/selectors/images.selector';
 
 @Component({
   selector: 'app-img-list',
@@ -9,7 +14,8 @@ import { Subscription } from 'rxjs';
 })
 
 export class ImgListComponent implements OnInit, OnDestroy {
-  constructor(public searchService: SearchService) {
+  images$ = this.store.pipe(select(selectImagesLst));
+  constructor(public searchService: SearchService, private store: Store<IAppState>, private router: Router) {
   }
 
   images: ReceiveImages[] = [];
@@ -21,6 +27,8 @@ export class ImgListComponent implements OnInit, OnDestroy {
     this.searchService.getImages(this.searchService.queryTitle);
     this.getImages();
     this.appendItems();
+    this.store.dispatch(new GetImages());
+    console.log(this.images$);
     // this.getNewImages();
   }
   ngOnDestroy() {

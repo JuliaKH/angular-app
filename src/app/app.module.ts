@@ -22,6 +22,12 @@ import {ImgListModule} from './pages/img-list/img-list.module';
 
 import { environment } from '../environments/environment';
 import { LogoutButtonComponent } from './header/logout-button/logout-button.component';
+import { EffectsModule } from '@ngrx/effects';
+import { ImagesEffects } from './core/store/effects/images.effects';
+import {StoreModule} from '@ngrx/store';
+import {appReducers} from './core/store/reducers/app.reducers';
+import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -44,7 +50,11 @@ import { LogoutButtonComponent } from './header/logout-button/logout-button.comp
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([ImagesEffects]),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [],
   exports: [
