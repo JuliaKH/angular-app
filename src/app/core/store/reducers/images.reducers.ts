@@ -1,5 +1,5 @@
-import { EImagesActions, ImagesActions } from '../actions/images.actions';
-import { IImagesState, initialImagesState } from '../state/images.state';
+import {EImagesActions, ImagesActions} from '../actions/images.actions';
+import {IImagesState, initialImagesState} from '../state/images.state';
 
 export const imagesReducers = (
   state = initialImagesState,
@@ -10,6 +10,9 @@ export const imagesReducers = (
         ...state,
         images: action.payload
       };
+    }
+    case EImagesActions.GetImagesFailure: {
+      return action.payload;
     }
     default: return state;
   }

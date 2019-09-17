@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../../core/search/search.service';
+import { SearchService } from '../../core/services/search/search.service';
+import {Store} from '@ngrx/store';
+import {IAppState} from '../../core/store/state/app.state';
+import { GetImages } from '../../core/store/actions/images.actions';
 
 @Component({
   selector: 'app-search',
@@ -8,7 +11,7 @@ import { SearchService } from '../../core/search/search.service';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(public searchService: SearchService) { }
+  constructor(public searchService: SearchService, private store: Store<IAppState>) { }
   queryTitle: string;
   searchPlaceholder = 'Search...';
   ngOnInit() {
@@ -16,7 +19,7 @@ export class SearchComponent implements OnInit {
   }
 
   getImages(title) {
-    this.searchService.getImages(title);
     this.searchService.queryTitle = title;
+    this.searchService.getImages(title);
   }
 }

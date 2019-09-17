@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, Subject, throwError } from 'rxjs';
 import { IImages } from './images';
+import {GetImages} from '../../store/actions/images.actions';
+import {Store} from '@ngrx/store';
+import {IAppState} from '../../store/state/app.state';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +13,9 @@ import { IImages } from './images';
 
 export class SearchService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private store: Store<IAppState>) { }
 
-  public newImages = new Subject<any>();
+  // public newImages = new Subject<any>();
   public currentImages = new Subject<any>();
   public queryTitle;
   getUnsplashImages(title: string): Observable<IImages[]> {
@@ -27,8 +30,7 @@ export class SearchService {
       .pipe(
         map((data: Idata) => {
           const images = data.results;
-          // console.log(images);
-          this.newImages.next(images);
+          // this.newImages.next(images);
           return images.map((image) => {
             return {id: image.id, description: image.description, url: image.urls.regular};
           });
@@ -41,6 +43,7 @@ export class SearchService {
   }
   getImages(title) {
     this.getUnsplashImages(title).subscribe();
+    this.store.dispatch(new GetImages());
   }
   addScrollingImages(title: string, page): Observable<IImages[]> {
     let headers = new HttpHeaders();
@@ -54,7 +57,6 @@ export class SearchService {
       .pipe(
         map((data: Idata) => {
           const images = data.results;
-          // console.log(images);
           this.currentImages.next(images);
           return images.map((image) => {
             return {id: image.id, description: image.description, url: image.urls.regular};

@@ -1,5 +1,6 @@
 <!--<section class="img-list" >-->
 <!--  <div class="container">-->
+<!--<app-loader *ngIf="loadingStatus$ | async"></app-loader>-->
 <div
   class="search-results"
   infiniteScroll
@@ -11,7 +12,7 @@
   <div class="container">
     <a *ngFor="let image of images">
       <div class="img-list__item">
-        <img routerLink="/images/{{image.id}}" [src]="image.urls.regular" [alt]="image.description" class="img-list__image">
+        <img routerLink="/images/{{image.id}}" [src]="image.url" [alt]="image.description" class="img-list__image">
       </div>
     </a>
   </div>

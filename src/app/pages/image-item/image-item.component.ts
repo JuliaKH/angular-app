@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GetImageItemService } from '../../core/get-image-item/get-image-item.service';
+import {GetImageItemService } from '../../core/services/get-image-item/get-image-item.service';
 import {ActivatedRoute} from '@angular/router';
 import { Image } from './image';
 

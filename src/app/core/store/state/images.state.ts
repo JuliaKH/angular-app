@@ -1,4 +1,4 @@
-import {IImages} from '../../search/images';
+import {IImages} from '../../services/search/images';
 
 export interface IImagesState {
   images: IImages[];
