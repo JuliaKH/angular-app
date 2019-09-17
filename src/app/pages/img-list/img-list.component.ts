@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SearchService } from '../../core/services/search/search.service';
 import { Subscription } from 'rxjs';
-import { GetImages } from '../../core/store/actions/images.actions';
+import {AddImages, GetImages} from '../../core/store/actions/images.actions';
 import { Store, select} from '@ngrx/store';
 import { IAppState } from '../../core/store/state/app.state';
 import { selectAddedImagesLst, selectImagesLst } from '../../core/store/selectors/images.selector';
@@ -20,14 +20,12 @@ export class ImgListComponent implements OnInit, OnDestroy {
   constructor(public searchService: SearchService, private store: Store<IAppState>) {}
 
   images: ReceiveImages[] = [];
+  page;
   private addImgsSubscription: Subscription;
   private scrollSubscription: Subscription;
 
-  page;
-
   ngOnInit() {
-    this.page = 1;
-    this.searchService.getImages(this.searchService.queryTitle);
+    // this.searchService.getImages(this.searchService.queryTitle);
     this.getImages$();
     this.appendItems$();
   }
@@ -38,6 +36,7 @@ export class ImgListComponent implements OnInit, OnDestroy {
   }
 
   getImages$() {
+    this.page = 1;
     this.store.dispatch(new GetImages());
     this.addImgsSubscription = this.images$.subscribe(images => {
       this.images = images;
@@ -46,7 +45,6 @@ export class ImgListComponent implements OnInit, OnDestroy {
   }
 
   appendItems$() {
-    // this.page++;
     console.log(this.page);
     this.scrollSubscription = this.addedImages$.subscribe(images => {
       if (images) {
@@ -54,8 +52,6 @@ export class ImgListComponent implements OnInit, OnDestroy {
           this.images.push(image);
         });
       }
-
-      console.log('hello--');
       console.log(this.images);
     });
   }
@@ -64,9 +60,10 @@ export class ImgListComponent implements OnInit, OnDestroy {
     this.page++;
     console.log(this.page);
     this.searchService.page = this.page;
-    this.searchService.getAddedImages(this.searchService.queryTitle, this.page);
+    this.store.dispatch(new AddImages());
   }
 }
+
 export class ReceiveImages {
   id: string;
   description: string;

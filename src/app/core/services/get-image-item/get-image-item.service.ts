@@ -17,7 +17,6 @@ export class GetImageItemService {
     return this.http.get(`https://api.unsplash.com/photos/${id}`, {headers})
       .pipe(
         map((data: IdataImage) => {
-          console.log(data);
           return{id: data.id, alt_description: data.alt_description, url: data.urls.regular };
         }),
         catchError(err => {

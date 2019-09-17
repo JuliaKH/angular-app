@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../core/services/search/search.service';
-import {Store} from '@ngrx/store';
-import {IAppState} from '../../core/store/state/app.state';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../core/store/state/app.state';
 import { GetImages } from '../../core/store/actions/images.actions';
 
 @Component({
@@ -20,6 +20,7 @@ export class SearchComponent implements OnInit {
 
   getImages(title) {
     this.searchService.queryTitle = title;
-    this.searchService.getImages(title);
+    // this.searchService.getImages(title);
+    this.store.dispatch(new GetImages());
   }
 }

@@ -16,9 +16,10 @@ export class SearchService {
   constructor(private http: HttpClient, private store: Store<IAppState>) { }
 
   // public newImages = new Subject<any>();
-  public currentImages = new Subject<any>();
+  // public currentImages = new Subject<any>();
   public queryTitle;
   public page;
+
   getUnsplashImages(title: string): Observable<IImages[]> {
     let headers = new HttpHeaders();
     headers  = headers.append('Authorization', 'Client-ID 5110e0875d03049c42ef2483cf9a9ad53c6a0f46dd526e9ee18dca0c3c6a8f0b');
@@ -43,11 +44,6 @@ export class SearchService {
       );
   }
 
-  getImages(title) {
-    // this.getUnsplashImages(title).subscribe();
-    this.store.dispatch(new GetImages());
-  }
-
   addScrollingImages(title: string, page): Observable<IImages[]> {
     let headers = new HttpHeaders();
     headers  = headers.append('Authorization', 'Client-ID 5110e0875d03049c42ef2483cf9a9ad53c6a0f46dd526e9ee18dca0c3c6a8f0b');
@@ -59,7 +55,7 @@ export class SearchService {
       .pipe(
         map((data: Idata) => {
           const images = data.results;
-          this.currentImages.next(images);
+          // this.currentImages.next(images);
           return images.map((image) => {
             return {id: image.id, description: image.description, url: image.urls.regular};
           });
@@ -69,11 +65,6 @@ export class SearchService {
           return throwError(err);
         })
       );
-  }
-
-  getAddedImages(title, page) {
-    this.addScrollingImages(title, page).subscribe();
-    this.store.dispatch(new AddImages());
   }
 }
 
