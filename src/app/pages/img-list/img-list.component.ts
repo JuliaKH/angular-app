@@ -1,13 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SearchService } from '../../core/services/search/search.service';
-import {Observable, Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { GetImages } from '../../core/store/actions/images.actions';
 import { Store, select} from '@ngrx/store';
-import {IAppState} from '../../core/store/state/app.state';
-import {selectImagesLst} from '../../core/store/selectors/images.selector';
-import {IImages} from '../../core/services/search/images';
-import {Select} from '@ngxs/store';
-import {LoaderState} from '../../core/store/state/loader.state';
+import { IAppState } from '../../core/store/state/app.state';
+import { selectAddedImagesLst, selectImagesLst } from '../../core/store/selectors/images.selector';
 
 @Component({
   selector: 'app-img-list',
@@ -16,90 +13,62 @@ import {LoaderState} from '../../core/store/state/loader.state';
 })
 
 export class ImgListComponent implements OnInit, OnDestroy {
+
   images$ = this.store.pipe(select(selectImagesLst));
+  addedImages$ = this.store.pipe(select(selectAddedImagesLst));
 
   constructor(public searchService: SearchService, private store: Store<IAppState>) {}
-  @Select(LoaderState.status)
-  public loadingStatus$: Observable<boolean>;
-  // images: ReceiveImages[] = [];
-  images: IImages[] = [];
+
+  images: ReceiveImages[] = [];
   private addImgsSubscription: Subscription;
   private scrollSubscription: Subscription;
 
-  page = 1;
+  page;
 
   ngOnInit() {
+    this.page = 1;
     this.searchService.getImages(this.searchService.queryTitle);
-    // this.getImages();
-    // this.appendItems();
-    // this.appendItems$();
     this.getImages$();
+    this.appendItems$();
   }
 
   ngOnDestroy() {
     this.addImgsSubscription.unsubscribe();
-    // this.scrollSubscription.unsubscribe();
+    this.scrollSubscription.unsubscribe();
   }
 
   getImages$() {
     this.store.dispatch(new GetImages());
     this.addImgsSubscription = this.images$.subscribe(images => {
       this.images = images;
-      console.log('hello+');
       console.log(this.images);
     });
-
-
   }
 
-  // getImages() {
-  //   this.addImgsSubscription = this.searchService.newImages.subscribe(images => {
-  //     this.images = images;
-  //     console.log(this.images);
-  //   });
-  // }
-
-  appendItems() {
-    this.page++;
+  appendItems$() {
+    // this.page++;
     console.log(this.page);
+    this.scrollSubscription = this.addedImages$.subscribe(images => {
+      if (images) {
+        images.map(image => {
+          this.images.push(image);
+        });
+      }
 
-    this.scrollSubscription = this.searchService.currentImages.subscribe(images => {
-      images.map(image => {
-        this.images.push(image);
-      });
+      console.log('hello--');
+      console.log(this.images);
     });
   }
-
-  // appendItems$() {
-  //   this.page++;
-  //   console.log(this.page);
-  //   this.store.dispatch(new GetImages());
-  //   this.images$.subscribe(images => {
-  //     images.map(image => {
-  //       this.images1.push(image);
-  //     });
-  //     console.log('hello++');
-  //     console.log(this.images1);
-  //   });
-  // }
 
   onScrollDown() {
     this.page++;
     console.log(this.page);
+    this.searchService.page = this.page;
     this.searchService.getAddedImages(this.searchService.queryTitle, this.page);
-    // }
-    // onScrollDown() {
-    //   this.page++;
-    //   console.log(this.page);
-    //   this.searchService.getAddedImages(this.searchService.queryTitle, this.page);
-    // }
-
   }
 }
 export class ReceiveImages {
   id: string;
   description: string;
-  urls: {
-    regular: string;
-  };
+  url: string;
 }

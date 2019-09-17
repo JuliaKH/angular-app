@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, Subject, throwError } from 'rxjs';
 import { IImages } from './images';
-import {GetImages} from '../../store/actions/images.actions';
-import {Store} from '@ngrx/store';
-import {IAppState} from '../../store/state/app.state';
+import {AddImages, GetImages} from '../../store/actions/images.actions';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../store/state/app.state';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,7 @@ export class SearchService {
   // public newImages = new Subject<any>();
   public currentImages = new Subject<any>();
   public queryTitle;
+  public page;
   getUnsplashImages(title: string): Observable<IImages[]> {
     let headers = new HttpHeaders();
     headers  = headers.append('Authorization', 'Client-ID 5110e0875d03049c42ef2483cf9a9ad53c6a0f46dd526e9ee18dca0c3c6a8f0b');
@@ -41,14 +42,15 @@ export class SearchService {
         })
       );
   }
+
   getImages(title) {
-    this.getUnsplashImages(title).subscribe();
+    // this.getUnsplashImages(title).subscribe();
     this.store.dispatch(new GetImages());
   }
+
   addScrollingImages(title: string, page): Observable<IImages[]> {
     let headers = new HttpHeaders();
     headers  = headers.append('Authorization', 'Client-ID 5110e0875d03049c42ef2483cf9a9ad53c6a0f46dd526e9ee18dca0c3c6a8f0b');
-
     let params = new HttpParams();
     params = params.append('query', title);
     params = params.append('per_page', '10');
@@ -71,6 +73,7 @@ export class SearchService {
 
   getAddedImages(title, page) {
     this.addScrollingImages(title, page).subscribe();
+    this.store.dispatch(new AddImages());
   }
 }
 

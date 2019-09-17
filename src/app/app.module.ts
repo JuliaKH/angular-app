@@ -28,6 +28,10 @@ import {StoreModule} from '@ngrx/store';
 import {appReducers} from './core/store/reducers/app.reducers';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {LoaderComponent} from './loader/loader.component';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptorService } from './core/interceptors/loader-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     LoginButtonComponent,
     SignUpButtonComponent,
     LogoutButtonComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,13 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true
+    }
+  ],
   exports: [
     NavbarComponent
   ],

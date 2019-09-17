@@ -10,7 +10,12 @@ export const selectImagesLst = createSelector(
   (state: IImagesState) => state.images
 );
 
-export const selectSelectedImages = createSelector(
+export const selectAddedImagesLst = createSelector(
   selectImages,
-  (state: IImagesState) => state.selectedImages
+  (state: IImagesState) => state.addedImages
 );
+
+// export const selectSelectedImages = createSelector(
+//   selectImages,
+//   (state: IImagesState) => state.selectedImages
+// );

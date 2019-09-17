@@ -11,6 +11,12 @@ export const imagesReducers = (
         images: action.payload
       };
     }
+    case EImagesActions.AddImagesSuccess: {
+      return {
+        ...state,
+        addedImages: action.payload
+      };
+    }
     case EImagesActions.GetImagesFailure: {
       return action.payload;
     }
