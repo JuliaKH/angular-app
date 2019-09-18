@@ -1,0 +1,25 @@
+<header class="header">
+
+  <div class="header-container">
+    <a routerLink=""><img src="assets/img/logo.png" alt="logo" class="header__logo"></a>
+
+    <div class="navbar">
+      <app-navbar></app-navbar>
+    </div>
+
+    <div class="wrapper-search">
+      <app-search></app-search>
+    </div>
+
+    <div *ngIf="authService.afAuth.user | async as user; else showLogin" class="header__login">
+      <app-logout-button></app-logout-button>
+      <p class="greeting-text">{{ user.displayName }}</p>
+    </div>
+    <ng-template #showLogin >
+        <app-login-button></app-login-button>
+<!--        <app-sign-up-button></app-sign-up-button>-->
+    </ng-template>
+
+  </div>
+
+</header>

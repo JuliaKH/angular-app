@@ -1,24 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
-import { ImgListComponent } from './img-list/img-list.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 @NgModule({
   declarations: [
-    HeaderComponent,
     SearchComponent,
-    ImgListComponent
   ],
   exports: [
-    HeaderComponent
+    SearchComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ]
 })
 export class SharedModule { }

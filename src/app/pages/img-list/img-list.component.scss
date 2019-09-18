@@ -1,0 +1,41 @@
+.container{
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.img-list{
+  //column-count: 4; // сколько колонок нужно?
+  //column-gap: 1em; // промежуток между блоками (справа или слева)
+  //
+  ///* тоже самое с нужными префиксами на 18 марта 2016 */
+  //-webkit-column-count: 4; -moz-column-count: 4;
+  //-webkit-column-gap: 1em; -moz-column-gap: 1em;
+
+  margin-top: 30px;
+  &__image{
+    max-width: 350px;
+    border-radius: 20px;
+
+    display: inline-block; // важно!
+    width: 100%;           // важно!
+    margin-bottom: 1em;
+    background-color: #eee;
+  }
+}
+
+a:hover .img-list__image, a:focus {
+  opacity: 0.9;
+  -webkit-transform: scale(0.95);
+  transform: scale(0.95);
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  transition: all .5s ease;
+  -o-transition: all .5s ease;
+}
+.search-results {
+  height: 20rem;
+  overflow: scroll;
+}

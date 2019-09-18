@@ -1,0 +1,10 @@
+.image-container{
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1200px;
+  &__img{
+    max-width: 500px;
+    display: block;
+    margin: 50px auto;
+  }
+}

@@ -1,0 +1,88 @@
+$home-color: #fff;
+.home{
+  background-image: url(../../../assets/img/bg-img.jpg);
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding-top: 50px;
+  h1 {
+    color: $home-color;
+    font-size: 72px;
+    .heading-caption{
+      font-family: 'Eina01-Bold', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      font-size: .8125rem;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+    }
+  }
+  .flex-item{
+    flex: 1;
+    padding: 1rem;
+  }
+}
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.heading {
+  small  {
+    color: rgba(255,255,255,0.4);
+  }
+  a {
+    color: $home-color;
+  }
+}
+.sub-heading{
+  color: rgba(255,255,255,0.65);
+  line-height: 2.25rem;
+  margin: 1.5rem 0;
+  letter-spacing: -.030625rem;
+  font: 400 26px system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.heading-buttons{
+  .btn{
+    -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    padding: 1rem 1.5rem;
+    border-radius: .25rem;
+    font-family: 'Eina01-Bold', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .git-btn{
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    margin-right: 25px;
+    margin-bottom: 30px;
+  }
+  .download-btn{
+    background-color: #fa6400;
+    &:HOVER{
+      background-color: #fb8332;
+    }
+
+  }
+
+}
+.text {
+  color: $home-color;
+  font: 400 16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  p{
+    margin-top: 15px;
+  }
+  h3{
+    font-size: 20px;
+  }
+  .in-text-link{
+    color: #fa6400;
+    font-weight: 600;
+  }
+}

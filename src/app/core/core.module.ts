@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SearchService } from './search/search.service';
+import { SearchService } from './services/search/search.service';
+import {CollectionsService} from './services/collections/collections.service';
 
 
 
@@ -11,7 +12,8 @@ import { SearchService } from './search/search.service';
     CommonModule
   ],
   providers: [
-    SearchService
+    SearchService,
+    CollectionsService
   ]
 })
 export class CoreModule { }
