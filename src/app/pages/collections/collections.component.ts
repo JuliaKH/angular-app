@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { IAppState } from '../../core/store/state/app.state';
 import { selectCollectionsLst } from '../../core/store/selectors/collections.selectors';
-import {GetCollections} from '../../core/store/actions/collections.actions';
+import { GetCollections } from '../../core/store/actions/collections.actions';
 import { Subscription } from 'rxjs';
 
 @Component({

@@ -1,7 +1,7 @@
-import {IImages} from '../../services/search/images';
+import { ICollections } from '../../services/collections/collections';
 
 export interface ICollectionsState {
-  collections: any;
+  collections: ICollections;
 }
 export const initialCollectionsState: ICollectionsState = {
   collections: null

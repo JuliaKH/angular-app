@@ -15,12 +15,10 @@ export class SearchComponent implements OnInit {
   queryTitle: string;
   searchPlaceholder = 'Search...';
   ngOnInit() {
-    // this.getImages('popular');
   }
 
   getImages(title) {
     this.searchService.queryTitle = title;
-    // this.searchService.getImages(title);
     this.store.dispatch(new GetImages());
   }
 }

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { IImages } from '../../services/search/images';
+import { ICollections } from '../../services/collections/collections';
 
 export enum ECollectionsActions {
   GetCollections = '[Collections] Get Collections',
@@ -14,7 +14,7 @@ export class GetCollections implements Action {
 
 export class GetCollectionsSuccess implements Action {
   public readonly type = ECollectionsActions.GetCollectionsSuccess;
-  constructor(public payload: any) {}
+  constructor(public payload: ICollections) {}
 }
 
 export class GetCollectionsFailure implements Action {
