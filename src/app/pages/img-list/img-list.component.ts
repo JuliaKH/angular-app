@@ -28,6 +28,7 @@ export class ImgListComponent implements OnInit, OnDestroy {
     // this.searchService.getImages(this.searchService.queryTitle);
     this.getImages$();
     this.appendItems$();
+    window.scrollTo(0, 510);
   }
 
   ngOnDestroy() {
@@ -61,6 +62,7 @@ export class ImgListComponent implements OnInit, OnDestroy {
     console.log(this.page);
     this.searchService.page = this.page;
     this.store.dispatch(new AddImages());
+
   }
 }
 

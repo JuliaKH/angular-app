@@ -5,6 +5,7 @@ $home-color: #fff;
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
+  padding-top: 50px;
   h1 {
     color: $home-color;
     font-size: 72px;
@@ -31,7 +32,7 @@ $home-color: #fff;
   justify-content: center;
 }
 .heading {
-  p {
+  small  {
     color: rgba(255,255,255,0.4);
   }
   a {
@@ -43,25 +44,24 @@ $home-color: #fff;
   line-height: 2.25rem;
   margin: 1.5rem 0;
   letter-spacing: -.030625rem;
-  font: 400 30px system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font: 400 26px system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .heading-buttons{
   .btn{
     -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    padding-top: 0.84375rem;
-    padding-right: 1.5rem;
-    padding-bottom: 0.65625rem;
-    padding-left: 1.5rem;
+    padding: 1rem 1.5rem;
     border-radius: .25rem;
     font-family: 'Eina01-Bold', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     display: inline-block;
     cursor: pointer;
   }
   .git-btn{
     background-color: transparent;
     border: 1px solid rgba(255,255,255,0.3);
+    margin-right: 25px;
+    margin-bottom: 30px;
   }
   .download-btn{
     background-color: #fa6400;
@@ -75,4 +75,14 @@ $home-color: #fff;
 .text {
   color: $home-color;
   font: 400 16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  p{
+    margin-top: 15px;
+  }
+  h3{
+    font-size: 20px;
+  }
+  .in-text-link{
+    color: #fa6400;
+    font-weight: 600;
+  }
 }
