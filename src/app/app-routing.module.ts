@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'images', loadChildren: './pages/img-list/img-list.module#ImgListModule', pathMatch: 'full'},
   { path: 'images/:id', component: ImageItemComponent},
+  { path: 'collections', loadChildren: './pages/collections/collections.module#CollectionsModule', pathMatch: 'full'},
   { path: '**', component: NotFoundComponent }
 
 ];

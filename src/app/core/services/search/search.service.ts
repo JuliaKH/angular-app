@@ -3,9 +3,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, Subject, throwError } from 'rxjs';
 import { IImages } from './images';
-import {AddImages, GetImages} from '../../store/actions/images.actions';
-import { Store } from '@ngrx/store';
-import { IAppState } from '../../store/state/app.state';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +10,7 @@ import { IAppState } from '../../store/state/app.state';
 
 export class SearchService {
 
-  constructor(private http: HttpClient, private store: Store<IAppState>) { }
+  constructor(private http: HttpClient) { }
 
   // public newImages = new Subject<any>();
   // public currentImages = new Subject<any>();

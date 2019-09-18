@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
   queryTitle: string;
   searchPlaceholder = 'Search...';
   ngOnInit() {
-    this.getImages('popular');
+    // this.getImages('popular');
   }
 
   getImages(title) {

@@ -1,0 +1,7 @@
+<div class="container">
+  <a *ngFor="let collection of collections">
+    <div class="collections__item">
+      <a routerLink="/collections/{{collection.id}}">{{collection.title}}</a>
+    </div>
+  </a>
+</div>

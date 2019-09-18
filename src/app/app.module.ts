@@ -10,6 +10,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
 
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
@@ -18,18 +19,17 @@ import { HeaderComponent } from './header/header.component';
 import { LoginButtonComponent } from './header/login-button/login-button.component';
 import { SignUpButtonComponent } from './header/sign-up-button/sign-up-button.component';
 import { PagesModule } from './pages/pages.module';
-import {ImgListModule} from './pages/img-list/img-list.module';
-
-import { environment } from '../environments/environment';
 import { LogoutButtonComponent } from './header/logout-button/logout-button.component';
+
 import { EffectsModule } from '@ngrx/effects';
 import { ImagesEffects } from './core/store/effects/images.effects';
-import {StoreModule} from '@ngrx/store';
-import {appReducers} from './core/store/reducers/app.reducers';
-import {StoreRouterConnectingModule} from '@ngrx/router-store';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {LoaderComponent} from './loader/loader.component';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './core/store/reducers/app.reducers';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CollectionsEffects } from './core/store/effects/collections.effects';
 
+import { LoaderComponent } from './loader/loader.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptorService } from './core/interceptors/loader-interceptor.service';
 
@@ -57,7 +57,7 @@ import { LoaderInterceptorService } from './core/interceptors/loader-interceptor
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([ImagesEffects]),
+    EffectsModule.forRoot([ImagesEffects, CollectionsEffects]),
     StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],

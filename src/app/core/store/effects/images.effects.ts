@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
-import {EMPTY, of} from 'rxjs';
-import {map, mergeMap, catchError, withLatestFrom, switchMap, mapTo} from 'rxjs/operators';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
+import { map, catchError, switchMap } from 'rxjs/operators';
 import { SearchService } from '../../services/search/search.service';
-import {EImagesActions, GetImagesSuccess, GetImages, GetImagesFailure, AddImagesSuccess} from '../actions/images.actions';
-import { IAppState } from '../state/app.state';
-import { Store } from '@ngrx/store';
+import { EImagesActions, GetImagesSuccess, GetImagesFailure, AddImagesSuccess } from '../actions/images.actions';
 
 @Injectable()
 export class ImagesEffects {
@@ -38,7 +36,6 @@ export class ImagesEffects {
   );
   constructor(
     private searchService: SearchService,
-    private actions$: Actions,
-    private store: Store<IAppState>
+    private actions$: Actions
   ) {}
 }
