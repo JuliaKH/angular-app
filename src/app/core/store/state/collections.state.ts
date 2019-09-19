@@ -1,7 +1,7 @@
 import { ICollections } from '../../services/collections/collections';
 
 export interface ICollectionsState {
-  collections: ICollections;
+  collections: ICollections[];
 }
 export const initialCollectionsState: ICollectionsState = {
   collections: null

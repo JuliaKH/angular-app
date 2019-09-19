@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class CollectionsComponent implements OnInit, OnDestroy {
 
   collections$ = this.store.pipe(select(selectCollectionsLst));
-  collections: ReceiveCollections[];
+  collections: ReceiveCollections[] = [];
   private collectionsSubscription: Subscription;
 
   constructor(private store: Store<IAppState>) { }

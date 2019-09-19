@@ -14,7 +14,7 @@ export class GetCollections implements Action {
 
 export class GetCollectionsSuccess implements Action {
   public readonly type = ECollectionsActions.GetCollectionsSuccess;
-  constructor(public payload: ICollections) {}
+  constructor(public payload: ICollections[]) {}
 }
 
 export class GetCollectionsFailure implements Action {

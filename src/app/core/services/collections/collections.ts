@@ -1,5 +1,5 @@
 export interface ICollections {
   id: string;
   title: string;
-  descriptions: string;
+  description: string;
 }
