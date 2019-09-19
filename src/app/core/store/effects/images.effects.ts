@@ -32,7 +32,7 @@ export class ImagesEffects {
           map(images => new AddImagesSuccess(images)),
           catchError(error => of(new GetImagesFailure(error)))
         );
-    })
+    }),
   );
   constructor(
     private searchService: SearchService,

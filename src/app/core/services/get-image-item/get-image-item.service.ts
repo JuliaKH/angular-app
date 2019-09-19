@@ -19,10 +19,6 @@ export class GetImageItemService {
         map((data: IdataImage) => {
           return{id: data.id, alt_description: data.alt_description, url: data.urls.regular };
         }),
-        catchError(err => {
-          console.log(err);
-          return throwError(err);
-        })
       );
   }
 

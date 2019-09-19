@@ -1,25 +1,27 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import { LoaderState } from '../core/services/loader/loader.service';
 import { LoaderService } from '../core/services/loader/loader.service';
+import {shareReplay, takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
-export class LoaderComponent implements OnInit, OnDestroy {
+export class LoaderComponent {
+  private destroy$ = new Subject();
 
-  show = false;  private subscription: Subscription;
+  show$ = this.loaderService.loaderState
+    .pipe(
+      shareReplay({ bufferSize: 1, refCount: true }),
+      takeUntil(this.destroy$.asObservable())
+    )
+
   constructor(private loaderService: LoaderService) { }
-  ngOnInit() {
-    this.subscription = this.loaderService.loaderState
-      .subscribe((state: LoaderState) => {
-        this.show = state.show;
-      });
-  }
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

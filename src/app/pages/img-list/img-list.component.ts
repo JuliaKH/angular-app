@@ -40,7 +40,6 @@ export class ImgListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new GetImages());
     this.addImgsSubscription = this.images$.subscribe(images => {
       this.images = images;
-      console.log(this.images);
     });
   }
 

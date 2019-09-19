@@ -34,10 +34,6 @@ export class SearchService {
             return {id: image.id, description: image.description, url: image.urls.regular};
           });
         }),
-        catchError(err => {
-          console.log(err);
-          return throwError(err);
-        })
       );
   }
 

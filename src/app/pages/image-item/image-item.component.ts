@@ -2,28 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import {GetImageItemService } from '../../core/services/get-image-item/get-image-item.service';
 import {ActivatedRoute} from '@angular/router';
 import { Image } from './image';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-image-item',
   templateUrl: './image-item.component.html',
   styleUrls: ['./image-item.component.scss']
 })
-export class ImageItemComponent implements OnInit {
+export class ImageItemComponent {
 
-  constructor(public imageService: GetImageItemService, private activateRoute: ActivatedRoute ) { }
+  image$: Observable<Image> = this.imageService.getImageItem(
+    this.activateRoute.snapshot.params.id
+  )
 
-  image: Image = {
-    id: '',
-    alt_description: '',
-    url: ''
-  };
-  ngOnInit() {
-    this.getImage(this.activateRoute.snapshot.params.id);
-  }
-
-  getImage(id) {
-    this.imageService.getImageItem(id).subscribe(image => {
-      this.image = image;
-    });
-  }
+  constructor(
+    public imageService: GetImageItemService,
+    private activateRoute: ActivatedRoute,
+  ) { }
 }
